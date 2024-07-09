@@ -2,7 +2,12 @@
 - hosts: all
   connection: local
   gather_facts: false
-
+  vars:
+    controller_hostname: "{{ controller_host | default(groups['automationcontroller'][0]) }}"
+    controller_username: "{{ controller_user | default('admin') }}"
+    controller_validate_certs: false
+    flatten_output: true
+  
   pre_tasks:
     - name: "Setup authentication (block)"
       block:
@@ -25,7 +30,6 @@
       when: controller_oauthtoken is not defined
       tags:
         - always
-
 
   roles:
     - infra.controller_configuration.filetree_create
