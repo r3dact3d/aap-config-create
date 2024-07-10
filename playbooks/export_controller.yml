@@ -7,7 +7,6 @@
     controller_username: "{{ controller_user | default('admin') }}"
     controller_validate_certs: false
     flatten_output: true
-    output_path: /tmp/filetree_output
   
   pre_tasks:
     - name: "Setup authentication (block)"
