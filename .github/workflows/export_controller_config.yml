@@ -27,7 +27,10 @@ jobs:
 
       - name: Fetch directory from target server
         run: |
-          ansible all -i inventory.yml -m fetch -a "src=/tmp/filetree_output dest=./filetree_output/ flat=yes"
+          ansible all -i inventory.yml -m fetch -a "src=/tmp/filetree_output dest=./filetree_output/ flat=yes"\
+            -e "ansible_python_interpreter=`which python3`" \
+            -e "controller_validate_certs=false"\
+            -e "ANSIBLE_HOST_KEY_CHECKING=false"
 
 
       - name: Update remote repo with new targets
