@@ -1,4 +1,4 @@
-name: 'Export AAP Config`
+name: "Export AAP Config"
 on:
   workflow_dispatch:
 
