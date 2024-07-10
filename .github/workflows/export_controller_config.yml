@@ -28,10 +28,12 @@ jobs:
 
       - name: Update remote repo with new targets
         run: |
+          ls -al filetree_output/
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add filetree_output/*.yaml
+          git add -A filetree_output/*.yaml
           git commit -m "Generated Inventory"
+          git push
         env:
           GH_TOKEN: ${{ github.token }}  
 
