@@ -20,7 +20,7 @@ jobs:
       - name: Run ansible playbook
         run: |
           ansible-galaxy collection install -r collections/requirements.yml
-          ansible-playbook export_controller.yml -i inventory.yml\
+          ansible-playbook playbooks/export_controller.yml -i inventory.yml\
             -e "ansible_python_interpreter=`which python3`" \
             -e "controller_password=${{ secrets.CONTROLLER_PASSWORD }}" \
             -e "controller_validate_certs=false"
