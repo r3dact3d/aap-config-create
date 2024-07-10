@@ -7,7 +7,7 @@ jobs:
     name: 'Ansible'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - name: 'Checkout'
@@ -24,3 +24,13 @@ jobs:
             -e "ansible_python_interpreter=`which python3`" \
             -e "controller_password=${{ secrets.CONTROLLER_PASSWORD }}" \
             -e "controller_validate_certs=false"
+
+      - name: Update remote repo with new targets
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add /tmp/filetree_output/
+          git commit -m "Generated Inventory"
+        env:
+          GH_TOKEN: ${{ github.token }}  
+
