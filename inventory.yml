@@ -5,7 +5,7 @@ all:
       children:
         dev_controller:
           hosts:
-            aap-aap.apps.cluster-pwsl5-1.dynamic.redhatworkshops.io:
+            aap-controller.cxggl.sandbox2984.opentlc.com
     automationcontroller:
       children:
         dev_controller:
