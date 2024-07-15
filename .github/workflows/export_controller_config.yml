@@ -23,24 +23,6 @@ jobs:
           ansible-playbook playbooks/export_controller.yml -i inventory.yml\
             -e "ansible_python_interpreter=`which python3`" \
             -e "controller_password=${{ secrets.CONTROLLER_PASSWORD }}" \
-            -e "controller_validate_certs=false"
-
-      - name: Fetch directory from target server
-        run: |
-          ansible all -i inventory.yml -m fetch -a "src=/tmp/filetree_output dest=./filetree_output/ flat=yes"\
-            -e "ansible_python_interpreter=`which python3`" \
-            -e "controller_validate_certs=false"\
-            -e "ANSIBLE_HOST_KEY_CHECKING=false"
-
-
-      - name: Update remote repo with new targets
-        run: |
-          ls -al filetree_output/
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -A filetree_output
-          git commit -m "Generated Inventory"
-          git push
-        env:
-          GH_TOKEN: ${{ github.token }}  
+            -e "controller_validate_certs=false" \
+            -e "output_path=/home/ec2-user/"
 
