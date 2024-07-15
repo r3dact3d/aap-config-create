@@ -24,5 +24,5 @@ jobs:
             -e "ansible_python_interpreter=`which python3`" \
             -e "controller_password=${{ secrets.CONTROLLER_PASSWORD }}" \
             -e "controller_validate_certs=false" \
-            -e "output_path=/home/ec2-user/"
+            -e "output_path=/home/ec2-user"
 
