@@ -2,3 +2,4 @@
 collections:
   - name: infra.controller_configuration
   - name: awx.awx
+  - name: azure.azcollection
